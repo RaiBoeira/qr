@@ -6,22 +6,36 @@
     <title>Redirecionando...</title>
     
     <script>
-        // API da Wikipedia para um artigo aleatório
-        var apiUrl = "https://pt.wikipedia.org/api/rest_v1/page/random/summary";
+        // 🔹 Categoria da Wikipedia que queremos usar
+        var categoria = "Categoria:Feriados";
 
+        // Constrói a URL da API da Wikipedia
+        var apiUrl = "https://pt.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=categorymembers&cmtitle=" + encodeURIComponent(categoria) + "&cmlimit=50";
+
+        // Busca os artigos dentro da categoria
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
-                var destino = "https://pt.wikipedia.org/wiki/" + data.title;
-                window.location.href = destino;
+                var artigos = data.query.categorymembers;
+                if (artigos.length > 0) {
+                    // Escolhe um artigo aleatório
+                    var artigoAleatorio = artigos[Math.floor(Math.random() * artigos.length)];
+                    var destino = "https://pt.wikipedia.org/wiki/" + encodeURIComponent(artigoAleatorio.title);
+                    
+                    // Redireciona para o artigo escolhido
+                    window.location.href = destino;
+                } else {
+                    // Se não encontrar artigos, redireciona para a página da categoria
+                    window.location.href = "https://pt.wikipedia.org/wiki/" + encodeURIComponent(categoria);
+                }
             })
             .catch(() => {
-                // Caso haja erro, redireciona para a página principal da Wikipedia
+                // Em caso de erro, redireciona para a Wikipedia
                 window.location.href = "https://pt.wikipedia.org";
             });
     </script>
 </head>
 <body>
-    <p>Se não for redirecionado automaticamente, <a id="manualLink" href="https://pt.wikipedia.org">clique aqui</a>.</p>
+    <p>Se não for redirecionado automaticamente, <a id="manualLink" href="https://pt.wikipedia.org/wiki/Categoria:Feriados">clique aqui</a>.</p>
 </body>
 </html>
