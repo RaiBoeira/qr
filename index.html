@@ -3,12 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nicolas Cage Bear Punch</title>
+    <title>GIF Aleatório do Nicolas Cage</title>
+    <script>
+        // Lista de URLs dos GIFs do Nicolas Cage
+        const gifs = [
+            "https://tenor.com/view/nicolas-cage-wink-gif-13096816146296424333",
+            "https://giphy.com/gifs/nicolas-cage-J63rbEc83kFnW",
+            "https://gifdb.com/nicolas-cage",
+            "https://makeagif.com/gif/you-dont-say-complete-scene-nicolas-cage-vampires-kiss-2u5IGg",
+            "https://tenor.com/view/nicolas-cage-thumbs-up-good-gif-15354386",
+            "https://giphy.com/gifs/nicolas-cage-3o6Zt8zY8V6V6V6V6g",
+            "https://gifdb.com/nicolas-cage-wedding-day-i-do-gif-15354386",
+            "https://giphy.com/gifs/nicolas-cage-3o6Zt8zY8V6V6V6V6g",
+            "https://gifdb.com/nicolas-cage-nervous-reaction-oh-god-gif-15354386",
+            "https://giphy.com/gifs/nicolas-cage-3o6Zt8zY8V6V6V6V6g",
+            "https://gifdb.com/nicolas-cage-emotional-tearing-up-gif-15354386",
+            "https://giphy.com/gifs/nicolas-cage-3o6Zt8zY8V6V6V6V6g",
+            "https://gifdb.com/nicolas-cage-confused-bad-hair-day-gif-15354386",
+            "https://giphy.com/gifs/nicolas-cage-3o6Zt8zY8V6V6V6V6g",
+            "https://gifdb.com/nicolas-cage-funny-mug-shot-gif-15354386",
+            "https://giphy.com/gifs/nicolas-cage-3o6Zt8zY8V6V6V6V6g",
+            "https://gifdb.com/nicolas-cage-fake-vampire-teeth-gif-15354386",
+            "https://giphy.com/gifs/nicolas-cage-3o6Zt8zY8V6V6V6V6g",
+            "https://gifdb.com/nicolas-cage-intense-reaction-nodding-yeah-gif-15354386",
+            "https://giphy.com/gifs/nicolas-cage-3o6Zt8zY8V6V6V6V6g",
+            "https://gifdb.com/nicolas-cage-monotone-blank-stare-clapping-gif-15354386"
+        ];
+
+        // Função para selecionar um GIF aleatório
+        function getRandomGif() {
+            const randomIndex = Math.floor(Math.random() * gifs.length);
+            return gifs[randomIndex];
+        }
+
+        // Função para inserir o GIF na página
+        function insertGif() {
+            const gifUrl = getRandomGif();
+            const gifContainer = document.getElementById('gif-container');
+            gifContainer.innerHTML = `<a href="${gifUrl}"><img src="${gifUrl}" alt="GIF Aleatório do Nicolas Cage" style="width:100%;"></a>`;
+        }
+
+        // Chama a função para inserir o GIF ao carregar a página
+        window.onload = insertGif;
+    </script>
 </head>
 <body>
-    <div class="tenor-gif-embed" data-postid="13096816146296424333" data-share-method="host" data-aspect-ratio="1.77857" data-width="100%">
-        <a href="https://tenor.com/view/nicolas-cage-bear-punch-gif-13096816146296424333">Nicolas Cage Bear Punch GIF</a>
+    <div id="gif-container" style="text-align:center; margin-top:20px;">
+        <!-- O GIF será inserido aqui -->
     </div>
-    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 </body>
 </html>
