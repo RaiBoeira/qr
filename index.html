@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta http-equiv="refresh" content="0;url=https://youtu.be/UmxF8zNivmY?si=2sBrAKTWa0j3qk4F">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecionando...</title>
+    
+    <script>
+        // 🔹 ALTERE APENAS ESTE LINK ABAIXO 🔹
+        var destino = "https://youtu.be/yGbROBd8grQ?si=WvlHM3FComB0VXSF";
+        
+        // Redirecionamento automático
+        window.location.href = destino;
+    </script>
 </head>
 <body>
-    <p>Se não for redirecionado automaticamente, <a href="https://youtu.be/UmxF8zNivmY?si=2sBrAKTWa0j3qk4F">clique aqui</a>.</p>
+    <p>Se não for redirecionado automaticamente, <a id="manualLink" href="#">clique aqui</a>.</p>
+
+    <script>
+        // Também altera o link manualmente sem precisar editar duas vezes
+        document.getElementById("manualLink").href = destino;
+    </script>
 </body>
 </html>
