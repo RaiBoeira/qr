@@ -2,31 +2,29 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1000, initial-scale=1.0">
-    <title>Vídeo Embedado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vídeo Vimeo em Loop</title>
     <style>
         body {
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: black;
+            overflow: hidden; /* Remove rolagem */
         }
         iframe {
-            width: 1000px;
-            height: 1500px;
+            width: 100vw;
+            height: 100vh;
             border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
     </style>
 </head>
 <body>
-    <iframe 
-        src="https://www.youtube.com/embed/RT31wRuzH7A?autoplay=1&loop=1&playlist=RT31wRuzH7A"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
+    <iframe title="vimeo-player"
+            src="https://player.vimeo.com/video/1060986380?h=83d3544788&autoplay=1&loop=1&muted=1&background=1"
+            allow="autoplay; fullscreen"
+            frameborder="0" 
+            allowfullscreen>
     </iframe>
 </body>
 </html>
