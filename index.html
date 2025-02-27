@@ -3,39 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecionando...</title>
-    
-    <script>
-        // 🔹 Categoria da Wikipedia que queremos usar
-        var categoria = "Categoria:Feriados";
-
-        // Constrói a URL da API da Wikipedia
-        var apiUrl = "https://pt.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=categorymembers&cmtitle=" + encodeURIComponent(categoria) + "&cmlimit=50";
-
-        // Busca os artigos dentro da categoria
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                var artigos = data.query.categorymembers;
-                if (artigos.length > 0) {
-                    // Escolhe um artigo aleatório
-                    var artigoAleatorio = artigos[Math.floor(Math.random() * artigos.length)];
-                    var destino = "https://pt.wikipedia.org/wiki/" + encodeURIComponent(artigoAleatorio.title);
-                    
-                    // Redireciona para o artigo escolhido
-                    window.location.href = destino;
-                } else {
-                    // Se não encontrar artigos, redireciona para a página da categoria
-                    window.location.href = "https://pt.wikipedia.org/wiki/" + encodeURIComponent(categoria);
-                }
-            })
-            .catch(() => {
-                // Em caso de erro, redireciona para a Wikipedia
-                window.location.href = "https://pt.wikipedia.org";
-            });
-    </script>
+    <title>Nicolas Cage Bear Punch</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            margin: 0;
+            flex-direction: column;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .gif-container {
+            max-width: 100%;
+        }
+        a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <p>Se não for redirecionado automaticamente, <a id="manualLink" href="https://pt.wikipedia.org/wiki/Categoria:Feriados">clique aqui</a>.</p>
+    <div class="gif-container">
+        <div class="tenor-gif-embed" data-postid="13096816146296424333" data-share-method="host" data-aspect-ratio="1.77857" data-width="100%">
+            <a href="https://tenor.com/view/nicolas-cage-bear-punch-gif-13096816146296424333">Nicolas Cage Bear Punch GIF</a>
+        </div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+    </div>
+    <a href="https://tenor.com/view/nicolas-cage-bear-punch-gif-13096816146296424333" target="_blank">Ver no Tenor</a>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicolas Cage Bear Punch</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            margin: 0;
+            flex-direction: column;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .gif-container {
+            max-width: 100%;
+        }
+        a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="gif-container">
+        <div class="tenor-gif-embed" data-postid="13096816146296424333" data-share-method="host" data-aspect-ratio="1.77857" data-width="100%">
+            <a href="https://tenor.com/view/nicolas-cage-bear-punch-gif-13096816146296424333">Nicolas Cage Bear Punch GIF</a>
+        </div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+    </div>
+    <a href="https://tenor.com/view/nicolas-cage-bear-punch-gif-13096816146296424333" target="_blank">Ver no Tenor</a>
 </body>
 </html>
