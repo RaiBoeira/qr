@@ -6,19 +6,22 @@
     <title>Redirecionando...</title>
     
     <script>
-        // 🔹 ALTERE APENAS ESTE LINK ABAIXO 🔹
-        var destino = "https://youtu.be/yGbROBd8grQ?si=WvlHM3FComB0VXSF";
-        
-        // Redirecionamento automático
-        window.location.href = destino;
+        // API da Wikipedia para um artigo aleatório
+        var apiUrl = "https://pt.wikipedia.org/api/rest_v1/page/random/summary";
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                var destino = "https://pt.wikipedia.org/wiki/" + data.title;
+                window.location.href = destino;
+            })
+            .catch(() => {
+                // Caso haja erro, redireciona para a página principal da Wikipedia
+                window.location.href = "https://pt.wikipedia.org";
+            });
     </script>
 </head>
 <body>
-    <p>Se não for redirecionado automaticamente, <a id="manualLink" href="#">clique aqui</a>.</p>
-
-    <script>
-        // Também altera o link manualmente sem precisar editar duas vezes
-        document.getElementById("manualLink").href = destino;
-    </script>
+    <p>Se não for redirecionado automaticamente, <a id="manualLink" href="https://pt.wikipedia.org">clique aqui</a>.</p>
 </body>
 </html>
