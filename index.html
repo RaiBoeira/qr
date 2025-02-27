@@ -3,28 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vídeo Vimeo em Loop</title>
+    <title>Three.js Icosahedron</title>
     <style>
-        body {
-            margin: 0;
-            overflow: hidden; /* Remove rolagem */
-        }
-        iframe {
-            width: 100vw;
-            height: 100vh;
-            border: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
     </style>
 </head>
 <body>
-    <iframe title="vimeo-player"
-            src="https://player.vimeo.com/video/1060986380?h=83d3544788&autoplay=1&loop=1&muted=1&background=1"
-            allow="autoplay; fullscreen"
-            frameborder="0" 
-            allowfullscreen>
-    </iframe>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Configuração básica da cena
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Criando um icosaedro (substitua o cubo)
+        const geometry = new THREE.IcosahedronGeometry(1, 0); // Tamanho 1 e subdivisão 0 (geometria básica)
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+        const icosahedron = new THREE.Mesh(geometry, material);
+        scene.add(icosahedron);
+
+        camera.position.z = 5;
+
+        // Função de animação
+        function animate() {
+            requestAnimationFrame(animate);
+            icosahedron.rotation.x += 0.01;
+            icosahedron.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Responsividade
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+    </script>
 </body>
 </html>
