@@ -20,21 +20,28 @@
                     }
                 });
 
-                if (!response.ok) throw new Error("Erro ao buscar links do Notion");
+                if (!response.ok) {
+                    console.error("Erro ao buscar dados da API", response);
+                    throw new Error("Erro ao buscar links do Notion");
+                }
 
                 const data = await response.json();
                 const links = data.results
                     .map(block => block.paragraph?.rich_text[0]?.text?.content)
                     .filter(text => text && text.startsWith("http"));
 
-                if (links.length === 0) throw new Error("Nenhum link disponível");
+                if (links.length === 0) {
+                    console.error("Nenhum link encontrado");
+                    throw new Error("Nenhum link disponível");
+                }
 
                 const linkAleatorio = links[Math.floor(Math.random() * links.length)];
+                console.log("Redirecionando para: ", linkAleatorio); // Verifique no console se o link está correto
                 window.location.href = linkAleatorio; // Redireciona para o link sorteado
 
             } catch (error) {
                 console.error("Erro:", error);
-                document.body.innerHTML = "<h1>Erro ao carregar link</h1>";
+                document.body.innerHTML = "<h1>Erro ao carregar link</h1><p>" + error.message + "</p>";
             }
         }
 
