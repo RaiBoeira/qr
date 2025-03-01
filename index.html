@@ -3,46 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three.js Icosahedron</title>
-    <style>
-        body { margin: 0; overflow: hidden; }
-        canvas { display: block; }
-    </style>
+    <title>Redirecionamento Aleatório</title>
+    <script>
+        async function redirecionarParaLinkAleatorio() {
+            const notionAPIKey = "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"; // API Key (substitua por uma nova)
+            const pageId = "SEU_PAGE_ID"; // Substitua pelo ID da sua página no Notion
+
+            const notionUrl = `https://api.notion.com/v1/blocks/${pageId}/children`;
+
+            try {
+                const response = await fetch(notionUrl, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${notionAPIKey}`,
+                        "Notion-Version": "2022-06-28"
+                    }
+                });
+
+                if (!response.ok) throw new Error("Erro ao buscar links do Notion");
+
+                const data = await response.json();
+                const links = data.results
+                    .map(block => block.paragraph?.rich_text[0]?.text?.content)
+                    .filter(text => text && text.startsWith("http"));
+
+                if (links.length === 0) throw new Error("Nenhum link disponível");
+
+                const linkAleatorio = links[Math.floor(Math.random() * links.length)];
+                window.location.href = linkAleatorio; // Redireciona para o link sorteado
+
+            } catch (error) {
+                console.error("Erro:", error);
+                document.body.innerHTML = "<h1>Erro ao carregar link</h1>";
+            }
+        }
+
+        window.onload = redirecionarParaLinkAleatorio;
+    </script>
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-        // Configuração básica da cena
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        // Criando um icosaedro (substitua o cubo)
-        const geometry = new THREE.IcosahedronGeometry(1, 0); // Tamanho 1 e subdivisão 0 (geometria básica)
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
-        const icosahedron = new THREE.Mesh(geometry, material);
-        scene.add(icosahedron);
-
-        camera.position.z = 5;
-
-        // Função de animação
-        function animate() {
-            requestAnimationFrame(animate);
-            icosahedron.rotation.x += 0.01;
-            icosahedron.rotation.y += 0.01;
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        // Responsividade
-        window.addEventListener('resize', () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-        });
-    </script>
+    <h1>Redirecionando...</h1>
 </body>
 </html>
