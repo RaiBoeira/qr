@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionamento Aleatório</title>
+    <script>
+        async function redirecionarParaLinkAleatorio() {
+            const sheetId = '19nn4gJfdP2aveFWowqfkOcu_Z1OuK1XrVQ2CE83FspM'; // ID da sua planilha
+            const range = 'A:A'; // A coluna A contém os links
+
+            // URL com a chave da API para buscar os dados na planilha
+            const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=AIzaSyABGhmIKAJ9mMuxIS9W6U9mZ7rjfHU740M`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (!data.values || data.values.length === 0) {
+                    throw new Error('Nenhum link encontrado na planilha');
+                }
+
+                // Pega todos os links na coluna e sorteia um
+                const links = data.values.map(row => row[0]).filter(link => link.startsWith('http'));
+                const linkAleatorio = links[Math.floor(Math.random() * links.length)];
+
+                if (!linkAleatorio) {
+                    throw new Error('Nenhum link válido encontrado');
+                }
+
+                // Redireciona para o link sorteado
+                window.location.href = linkAleatorio;
+            } catch (error) {
+                console.error('Erro:', error);
+                document.body.innerHTML = "<h1>Erro ao carregar link</h1><p>" + error.message + "</p>";
+            }
+        }
+
+        window.onload = redirecionarParaLinkAleatorio;
+    </script>
+</head>
+<body>
+    <h1>Redirecionando...</h1>
+</body>
+</html>
